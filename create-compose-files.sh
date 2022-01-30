@@ -3,6 +3,11 @@
 # Path to backup location
 backup_dir="$HOME/compose-backups"
 
+if [ ! -d "$backup_dir" ] ; then
+  mkdir "$backup_dir"
+  echo "Made backup dir at $backup_dir"
+fi
+
 docker pull red5d/docker-autocompose
 current_time=$(date "+%Y.%m.%d-%H.%M.%S")
 docker ps --format '{{.Names}}' > containers.txt
